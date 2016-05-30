@@ -19,13 +19,14 @@ module UniqHistory
     private def command_cache
       @io.each_line.each_with_object({} of String => String) { |line, cache|
         number, command = number_and_command(line)
-        cache[command] ||= number
+        cache[command] ||= number unless number.empty? || command.empty?
       }
     end
 
     private def number_and_command(line)
-      match = line.scan(/(\d+)\s(.*)/).first
-      [match[1], match[2]]
+      matches = line.scan(/(\d+)\s(.*)/)
+      return ["", ""] if matches.empty?
+      [matches[0][1], matches[0][2]]
     end
   end
 end

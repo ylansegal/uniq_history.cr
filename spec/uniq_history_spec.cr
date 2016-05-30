@@ -30,6 +30,7 @@ describe UniqHistory::Filter do
     1 git status
     2 git add .
     31416 git status
+    \n
     HISTORY
     io = MemoryIO.new(history)
 
