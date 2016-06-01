@@ -2,8 +2,8 @@ require "./uniq_history/*"
 
 module UniqHistory
   class Filter
-    def initialize(io : IO)
-      @io = io
+    def initialize(input : IO)
+      @input = input
     end
 
     def de_duplicate
@@ -17,7 +17,7 @@ module UniqHistory
     end
 
     private def command_cache
-      @io.each_line.each_with_object({} of String => String) { |line, cache|
+      @input.each_line.each_with_object({} of String => String) { |line, cache|
         number, command = number_and_command(line)
         cache[command] ||= number unless number.empty? || command.empty?
       }
