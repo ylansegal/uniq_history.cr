@@ -10,7 +10,7 @@ bin_directory:
 	mkdir -p $(bin_dir)
 dependencies:
 	$(crystal) deps
-install:
+install: build
 	cp $(bin_dir)/$(executable) /usr/local/bin/
 
 .PHONY : clean
