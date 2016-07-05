@@ -5,7 +5,7 @@ executable = uniq_history
 test: dependencies
 	$(crystal) spec
 build: bin_directory dependencies
-	$(crystal) compile --release -o $(bin_dir)/$(executable) src/cli.cr $(CRFLAGS)
+	$(crystal) build --release -o $(bin_dir)/$(executable) src/cli.cr $(CRFLAGS)
 bin_directory:
 	mkdir -p $(bin_dir)
 dependencies:
