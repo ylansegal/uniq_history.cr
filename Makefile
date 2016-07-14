@@ -1,5 +1,6 @@
 crystal ?= $(shell which crystal)
 bin_dir = bin
+doc_dir = doc
 executable = uniq_history
 
 test: dependencies
@@ -12,7 +13,9 @@ dependencies:
 	$(crystal) deps
 install: build
 	cp $(bin_dir)/$(executable) /usr/local/bin/
+docs: build
+	$(crystal) docs
 
 .PHONY : clean
 clean :
-	-rm -rf $(bin_dir)
+	-rm -rf $(bin_dir) $(doc_dir)
