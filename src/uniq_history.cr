@@ -26,7 +26,7 @@ module UniqHistory
     private def number_and_command(line)
       matches = line.scan(/(\d+)\s(.*)/)
       return ["", ""] if matches.empty?
-      [matches[0][1], matches[0][2]]
+      [matches[0][1], matches[0][2].strip]
     end
   end
 end

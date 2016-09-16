@@ -25,6 +25,21 @@ describe UniqHistory::Filter do
     UniqHistory::Filter.new(io).de_duplicate.should eq expected
   end
 
+  it "filters ending spaces" do
+    history = <<-HISTORY
+    1 git status
+    2 git add .
+    3 git status\t
+    HISTORY
+    io = MemoryIO.new(history)
+
+    expected = <<-HISTORY
+    1 git status
+    2 git add .
+    HISTORY
+    UniqHistory::Filter.new(io).de_duplicate.should eq expected
+  end
+
   it "works with large command numbers" do
     history = <<-HISTORY
     1 git status
