@@ -6,7 +6,7 @@ describe UniqHistory::Filter do
     1 git status
     2 git add .
     HISTORY
-    io = MemoryIO.new(history)
+    io = IO::Memory.new(history)
     UniqHistory::Filter.new(io).de_duplicate.should eq history
   end
 
@@ -16,7 +16,7 @@ describe UniqHistory::Filter do
     2 git add .
     3 git status
     HISTORY
-    io = MemoryIO.new(history)
+    io = IO::Memory.new(history)
 
     expected = <<-HISTORY
     1 git status
@@ -31,7 +31,7 @@ describe UniqHistory::Filter do
     2 git add .
     3 git status\t
     HISTORY
-    io = MemoryIO.new(history)
+    io = IO::Memory.new(history)
 
     expected = <<-HISTORY
     1 git status
@@ -47,7 +47,7 @@ describe UniqHistory::Filter do
     31416 git status
     \n
     HISTORY
-    io = MemoryIO.new(history)
+    io = IO::Memory.new(history)
 
     expected = <<-HISTORY
     1 git status
