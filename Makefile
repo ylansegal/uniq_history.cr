@@ -1,4 +1,5 @@
 crystal ?= $(shell which crystal)
+shards ?= $(shell which shards)
 bin_dir = bin
 doc_dir = doc
 executable = uniq_history
@@ -10,7 +11,7 @@ build: bin_directory dependencies
 bin_directory:
 	mkdir -p $(bin_dir)
 dependencies:
-	$(crystal) deps
+	$(shards) install
 install: build
 	cp $(bin_dir)/$(executable) /usr/local/bin/
 docs: build
