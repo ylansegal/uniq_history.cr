@@ -1,22 +1,23 @@
 crystal ?= $(shell which crystal)
-shards ?= $(shell which shards)
-bin_dir = bin
-doc_dir = doc
-executable = uniq_history
+shards ?= $(shell which shards)d
 
-test: dependencies
+.PHONY : test
+test: shard.lock
 	$(crystal) spec
-build: bin_directory dependencies
-	$(crystal) build --release -o $(bin_dir)/$(executable) src/cli.cr $(CRFLAGS)
-bin_directory:
-	mkdir -p $(bin_dir)
-dependencies:
+bin/uniq_history: bin shard.lock src/**/*.cr
+	$(crystal) build --release --no-debug -o bin/uniq_history src/cli.cr $(CRFLAGS)
+bin:
+	mkdir -p bin
+shard.lock: shard.yml
+	$(shards) prune
 	$(shards) install
-install: build
-	cp $(bin_dir)/$(executable) /usr/local/bin/
-docs: build
-	$(crystal) docs
+	touch $@
+
+.PHONY : install
+install: /usr/local/bin/uniq_history
+/usr/local/bin/uniq_history: bin/uniq_history
+	cp bin/uniq_history /usr/local/bin/
 
 .PHONY : clean
 clean :
-	-rm -rf $(bin_dir) $(doc_dir)
+	-rm -rf bin
