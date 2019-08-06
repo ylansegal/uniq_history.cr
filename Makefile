@@ -2,7 +2,7 @@ crystal ?= $(shell which crystal)
 shards ?= $(shell which shards)d
 
 test: shard.lock
-	$(crystal) spec
+	$(crystal) spec --warnings all --error-on-warnings
 
 bin/uniq_history: bin shard.lock src/**/*.cr
 	$(crystal) build --release --no-debug -o bin/uniq_history src/cli.cr $(CRFLAGS)
