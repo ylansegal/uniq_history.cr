@@ -1,5 +1,5 @@
 crystal ?= $(shell which crystal)
-shards ?= $(shell which shards)d
+shards ?= $(shell which shards)
 
 test: shard.lock
 	$(crystal) spec --warnings all --error-on-warnings
