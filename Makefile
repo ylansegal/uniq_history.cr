@@ -4,7 +4,7 @@ shards ?= $(shell which shards)
 test: shard.lock
 	$(crystal) spec --warnings all --error-on-warnings
 
-bin/uniq_history: bin shard.lock src/**/*.cr
+bin/uniq_history: bin shard.lock src/**/*.cr src/*.cr
 	$(crystal) build --release --no-debug -o bin/uniq_history src/cli.cr $(CRFLAGS)
 
 bin:
