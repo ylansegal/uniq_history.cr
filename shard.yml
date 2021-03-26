@@ -1,9 +1,9 @@
 name: uniq_history
-version: 0.1.0
+version: 0.1.1
 
 authors:
-  - Ylan Segal <>
+  - Ylan Segal <ylan@segal-family.com>
 
 license: MIT
 
-crystal: 0.35.1
+crystal: 1.0.0
