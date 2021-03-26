@@ -4,7 +4,19 @@ Filters the output of the `history` command, to remove duplicated commands, keep
 
 ## Installation
 
-## TODO
+This project requires `crystal` installed locally. The version is governed by `.tool-versions`, as defined by `asdf`.
+
+To run specs:
+
+```
+$ make
+```
+
+To install:
+
+```
+$ make install
+```
 
 
 ## Usage
