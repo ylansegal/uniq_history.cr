@@ -7,7 +7,12 @@ describe UniqHistory::Filter do
     2 git add .
     HISTORY
     io = IO::Memory.new(history)
-    UniqHistory::Filter.new(io).de_duplicate.should eq history
+
+    expected = <<-HISTORY
+    1     git status
+    2     git add .
+    HISTORY
+    UniqHistory::Filter.new(io).de_duplicate.should eq expected
   end
 
   it "filters duplicates" do
@@ -19,8 +24,8 @@ describe UniqHistory::Filter do
     io = IO::Memory.new(history)
 
     expected = <<-HISTORY
-    1 git status
-    2 git add .
+    1     git status
+    2     git add .
     HISTORY
     UniqHistory::Filter.new(io).de_duplicate.should eq expected
   end
@@ -34,24 +39,24 @@ describe UniqHistory::Filter do
     io = IO::Memory.new(history)
 
     expected = <<-HISTORY
-    1 git status
-    2 git add .
+    1     git status
+    2     git add .
     HISTORY
     UniqHistory::Filter.new(io).de_duplicate.should eq expected
   end
 
   it "works with large command numbers" do
     history = <<-HISTORY
-    1 git status
-    2 git add .
+    123 git status
+    2829 git add .
     31416 git status
     \n
     HISTORY
     io = IO::Memory.new(history)
 
     expected = <<-HISTORY
-    1 git status
-    2 git add .
+    123   git status
+    2829  git add .
     HISTORY
     UniqHistory::Filter.new(io).de_duplicate.should eq expected
   end

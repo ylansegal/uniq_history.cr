@@ -12,7 +12,7 @@ module UniqHistory
 
     private def format_output(cache)
       cache.map { |command, number|
-        [number, command].join(" ")
+        [number.ljust(len: 5), command].join(" ")
       }.join("\n")
     end
 
