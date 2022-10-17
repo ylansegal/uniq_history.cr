@@ -15,10 +15,10 @@ shard.lock: shard.yml
 	$(shards) install
 	touch $@
 
-install: /usr/local/bin/uniq_history
+install: /opt/homebrew/uniq_history
 
-/usr/local/bin/uniq_history: bin/uniq_history
-	cp bin/uniq_history /usr/local/bin/
+/opt/homebrew/uniq_history: bin/uniq_history
+	cp bin/uniq_history /opt/homebrew/
 
 clean :
 	-rm -rf bin
