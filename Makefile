@@ -1,5 +1,6 @@
 crystal ?= $(shell which crystal)
 shards ?= $(shell which shards)
+brew ?= $(shell brew --prefix)
 
 test: shard.lock
 	$(crystal) spec --warnings all --error-on-warnings
@@ -15,10 +16,10 @@ shard.lock: shard.yml
 	$(shards) install
 	touch $@
 
-install: /opt/homebrew/uniq_history
+install: $(brew)/bin/uniq_history
 
-/opt/homebrew/uniq_history: bin/uniq_history
-	cp bin/uniq_history /opt/homebrew/
+$(brew)/bin/uniq_history: bin/uniq_history
+	cp bin/uniq_history $(brew)/bin/
 
 clean :
 	-rm -rf bin
